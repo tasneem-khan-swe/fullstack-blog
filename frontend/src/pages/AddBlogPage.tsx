@@ -14,7 +14,7 @@ const initialValues: NewPostPayload = {
     description: "",
     content: "",
 }
-export const AddBlogPage = ({onAddBlog}:{onAddBlog:(values:Partial<IPostData>)=>void}) => {
+export const AddBlogPage = ({onAddBlog}:{onAddBlog?:(values:Partial<IPostData>)=>void}) => {
     const validationSchema = Yup.object().shape({
         title: Yup.string().required(),
         description: Yup.string().required(),
@@ -33,7 +33,7 @@ export const AddBlogPage = ({onAddBlog}:{onAddBlog:(values:Partial<IPostData>)=>
                 validationSchema={validationSchema}
                 onSubmit={(values, {resetForm}) => {
                     console.log(values)
-                    onAddBlog(values);
+                    onAddBlog?.(values);
                     resetForm();
                 }}
             >
